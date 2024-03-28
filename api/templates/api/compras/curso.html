@@ -1,0 +1,41 @@
+{% extends 'api/modelo.html' %}
+{% block conteudo %}
+<div class="col-md-7 mx-auto">
+    <h3>Lista de cursos</h3>
+    <hr>
+    <table class="table table-striped">
+        <tr>
+            <th>Nome</th>
+            <th>Duração </th>
+            <th>Valor</th>
+            <th>Vagas</th>
+            <th>Detalhar</th>
+            {% if request.user.is_superuser %}
+            <th>Opções</th>
+            {% endif %}
+            
+        </tr>
+        {% for curso in cursos %}
+        <tr>
+            <td>{{ curso.nome }}</td>
+            <td>{{ curso.duracao }}h</td>
+            <td>R${{ curso.valor}}</td>
+            <td>{{ curso.vagas_totais}}</td>
+            <td>
+                <form method="POST" action="{% url 'detalhar-curso' curso.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-warning btn-sm" title="Compra">Detalhe</button>
+                </form>
+            </td>
+            {% if request.user.is_superuser %}
+            <td>
+                <a href="{% url 'api-editar-curso' curso.id %}" class="btn btn-warning btn-sm" title="Editar">E</a>
+                <a href="{% url 'api-excluir-curso' curso.id %}" class="btn btn-danger btn-sm" title="Excluir">X</a>
+            </td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+</div>
+</table>
+
+{% endblock %}

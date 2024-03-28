@@ -1,0 +1,69 @@
+{% extends 'paginas/modelo.html' %}
+{% load static %}
+
+{% block conteudo %}
+{% if function_called == 'A' %}
+    <div class="col-md-7 mx-auto">
+        <h3>Lista de cursos registrados</h3>
+        <a href="{% url 'cadastrar-curso' %}" class="btn btn-primary btn-sm"> Adicionar curso</a>
+        <hr>
+        <table class="table table-striped">
+            <tr>
+                <th>Nome</th>
+                <th>Duração</th>
+                <th>Valor</th>
+                <th>Vagas Disponível</th>
+                <th>Opções</th>
+            </tr>
+            {% for curso in cursos %}
+            <tr>
+                <td>{{ curso.nome }}</td>
+                <td>{{ curso.duracao }}h</td>
+                <td>R${{ curso.valor }}</td>
+                <td>{{ curso.vagas_totais }}</td>
+                <td>
+                    <a href="{% url 'editar-curso' curso.pk %}" class="btn btn-warning btn-sm" title="Editar">E</a>
+                    <a href="{% url 'excluir-curso' curso.pk %}" class="btn btn-danger btn-sm" title="Excluir">X</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5">Nenhum curso registrado.</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% else %}
+    <div class="col-md-7 mx-auto">
+        <h3>Lista de cursos registrados</h3>
+        <a href="{% url 'cadastrar-curso' %}" class="btn btn-primary btn-sm"> Adicionar curso</a>
+        <hr>
+        <table class="table table-striped">
+            <tr>
+                <th>Nome</th>
+                <th>Duração </th>
+                <th>Valor</th>
+                <th>Vagas Disponível</th>
+                <th>Opções</th>
+            </tr>
+            {% for curso in object %}
+            <tr>
+                <td>{{ curso.nome }}</td>
+                <td>{{ curso.duracao }}h</td>
+                <td>R${{ curso.valor}}</td>
+                <td>{{ curso.vagas_totais}}</td>
+                <td>
+                    <a href="{% url 'editar-curso' curso.pk %}" class="btn btn-warning btn-sm" title="Editar">E</a>
+                    <a href="{% url 'excluir-curso' curso.pk %}" class="btn btn-danger btn-sm" title="Excluir">X</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="3">Nenhum curso registrado.</td>
+            </tr>
+
+            {% endfor %}
+    </div>
+    </table>
+{% endif %}
+    {% endblock %}

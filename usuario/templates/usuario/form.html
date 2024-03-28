@@ -1,0 +1,20 @@
+{% extends 'paginas/modelo.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block conteudo %}
+<div class="row">
+    <div class="col-md-7 mx-auto">
+        <h3>Autenticação</h3>
+        <form action="" method="POST">
+
+            {% csrf_token %}
+
+            {{form|crispy}}
+
+            <button type="submit" class="btn btn-dark" name="botao-cadastrar">Entrar</button>
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}

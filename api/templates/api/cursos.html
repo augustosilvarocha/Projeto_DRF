@@ -1,0 +1,26 @@
+{% extends 'api/modelo.html' %}
+{% load static %}
+
+{% block conteudo %}
+<div class="col-md-7 mx-auto">
+    <h3>Lista de cursos registrados</h3>
+    <a href="{% url 'criar-curso' %}" class="btn btn-primary btn-sm"> Adicionar curso</a>
+    <hr>
+    <table class="table table-striped">
+        <tr>
+            <th>Nome</th>
+            <th>Duração </th>
+            <th>Valor</th>
+            <th>Vagas Disponível</th>
+        </tr>
+        {% for curso in cursos %}
+        <tr>
+            <td>{{ curso.nome }}</td>
+            <td>{{ curso.duracao }}h</td>
+            <td>R${{ curso.valor}}</td>
+            <td>{{ curso.vagas_totais}}</td>
+        </tr>
+        {% endfor %}
+</div>
+</table>
+{% endblock %}

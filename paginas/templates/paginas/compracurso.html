@@ -1,0 +1,36 @@
+{% extends 'paginas/modelo.html' %}
+{% block conteudo %}
+    <div class="col-md-7 mx-auto">
+        <h3>Lista de cursos</h3>
+        <hr>
+        <table class="table table-striped">
+            <tr>
+                <th>Nome</th>
+                <th>Duração </th>
+                <th>Valor</th>
+                <th>Vagas</th>
+                <th>Opção</th>
+            </tr>
+            {% for curso in cursos %}
+            <tr>
+                <td>{{ curso.nome }}</td>
+                <td>{{ curso.duracao }}h</td>
+                <td>R${{ curso.valor}}</td>
+                <td>{{ curso.vagas_totais}}</td>
+                <td>
+                    <form method="POST" action="{% url 'comprar-curso' curso.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-warning btn-sm" title="Compra">Comprar</button>
+                    </form>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="3">Nenhum curso registrado.</td>
+            </tr>
+    
+            {% endfor %}
+    </div>
+    </table>
+
+{% endblock %}

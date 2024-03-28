@@ -1,0 +1,16 @@
+{% extends 'api/modelo.html' %}
+{% load crispy_forms_tags %}
+{% block conteudo%}
+
+<body>
+
+    {% if request.user.is_superuser %}
+        <h1>Você é um superusuário (administrador)</h1>
+    {% elif pertence_dono %}
+        <h1>Você é dono</h1>
+    {% else %}
+        <h1>Você é um usuario</h1>
+    {% endif %}
+
+</body>
+{% endblock %}

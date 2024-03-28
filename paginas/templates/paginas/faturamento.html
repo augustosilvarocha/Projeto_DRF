@@ -1,0 +1,25 @@
+{% extends 'paginas/modelo.html' %}
+
+{% block conteudo %}
+<h3>Faturamento de cada curso e total</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Curso</th>
+            <th>Faturamento</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for curso in cursos %}
+        <tr>
+            <td>{{ curso.nome }}</td>
+            <td>R${{ curso.faturamento }}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+            <td><strong>Total</strong></td>
+            <td><strong>R${{ faturamento_total }}</strong></td>
+        </tr>
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends 'paginas/modelo.html' %}
+{% block conteudo %}
+<br>
+    {% if compra_realizada %}
+        <h2> Compra realizada do curso de {{curso}}</h2>
+    {% else %}
+        <h2>Compra não foi realizada.</h2>
+    {% endif %}
+{% endblock %}
